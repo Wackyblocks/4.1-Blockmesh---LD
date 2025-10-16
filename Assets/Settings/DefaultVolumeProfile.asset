@@ -199,6 +199,26 @@ MonoBehaviour:
   texture:
     m_OverrideState: 1
     m_Value: {fileID: 0}
+--- !u!114 &-5690212200732483814
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 423030d36666645b79933c364aa05744, type: 3}
+  m_Name: CustomToneMapping
+  m_EditorClassIdentifier: net.aki-null.ToneMapping.URP::CustomToneMapping.URP.CustomToneMapping
+  active: 1
+  mode:
+    m_OverrideState: 1
+    m_Value: 0
+  lutTexture:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 1
 --- !u!114 &-5520245016509672950
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -342,6 +362,9 @@ MonoBehaviour:
   skyOcclusionIntensityMultiplier:
     m_OverrideState: 1
     m_Value: 1
+  worldOffset:
+    m_OverrideState: 1
+    m_Value: {x: 0, y: 0, z: 0}
 --- !u!114 &-1216621516061285780
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -462,8 +485,10 @@ MonoBehaviour:
   - {fileID: -6288072647309666549}
   - {fileID: 7518938298396184218}
   - {fileID: -1410297666881709256}
-  - {fileID: -7750755424749557576}
-  - {fileID: -5139089513906902183}
+  - {fileID: -5690212200732483814}
+  - {fileID: 5504069230959892571}
+  - {fileID: 4013859566081604098}
+  - {fileID: 4932966192361287114}
 --- !u!114 &853819529557874667
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -820,6 +845,58 @@ MonoBehaviour:
   bladeRotation:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &4013859566081604098
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970bbcb3f38604f8ab0124110c82d4a5, type: 3}
+  m_Name: GT7ToneMapping
+  m_EditorClassIdentifier: net.aki-null.ToneMapping.URP::CustomToneMapping.URP.GT7ToneMapping
+  active: 1
+  detectPeakNits:
+    m_OverrideState: 1
+    m_Value: 1
+  targetPeakNits:
+    m_OverrideState: 1
+    m_Value: 1000
+  sdrPaperWhite:
+    m_OverrideState: 1
+    m_Value: 100
+  referenceLuminance:
+    m_OverrideState: 1
+    m_Value: 100
+  curveAlpha:
+    m_OverrideState: 1
+    m_Value: 0.01
+  curveMidPoint:
+    m_OverrideState: 1
+    m_Value: 0.22
+  curveLinearSection:
+    m_OverrideState: 1
+    m_Value: 0.527623
+  curveToeStrength:
+    m_OverrideState: 1
+    m_Value: 1.33
+  ucs:
+    m_OverrideState: 1
+    m_Value: 0
+  jzazbzExponentScale:
+    m_OverrideState: 1
+    m_Value: 1.7
+  blendRatio:
+    m_OverrideState: 1
+    m_Value: 0.6
+  fadeStart:
+    m_OverrideState: 1
+    m_Value: 0.98
+  fadeEnd:
+    m_OverrideState: 1
+    m_Value: 1.16
 --- !u!114 &4251301726029935498
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -850,6 +927,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   intensity:
+    m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &4932966192361287114
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2d6e8b0bc7043d580c3c934a4e8c5d, type: 3}
+  m_Name: GTToneMapping
+  m_EditorClassIdentifier: net.aki-null.ToneMapping.URP::CustomToneMapping.URP.GT.GTToneMapping
+  active: 1
+  detectPeakNits:
+    m_OverrideState: 1
+    m_Value: 1
+  targetPeakNits:
+    m_OverrideState: 1
+    m_Value: 1000
+  sdrPaperWhite:
+    m_OverrideState: 1
+    m_Value: 100
+  referenceLuminance:
+    m_OverrideState: 1
+    m_Value: 100
+  contrast:
+    m_OverrideState: 1
+    m_Value: 1
+  linearSectionStart:
+    m_OverrideState: 1
+    m_Value: 0.22
+  linearSectionLength:
+    m_OverrideState: 1
+    m_Value: 0.4
+  blackTightness:
+    m_OverrideState: 1
+    m_Value: 1.33
+  blackOffset:
+    m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &5504069230959892571
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b884fa4bc92d448cfbf049be658fd627, type: 3}
+  m_Name: AgXToneMapping
+  m_EditorClassIdentifier: net.aki-null.ToneMapping.URP::CustomToneMapping.URP.AgXToneMapping
+  active: 1
+  detectBrightnessLimits:
+    m_OverrideState: 1
+    m_Value: 1
+  maxNits:
+    m_OverrideState: 1
+    m_Value: 1000
+  sdrPaperWhite:
+    m_OverrideState: 1
+    m_Value: 250
+  look:
+    m_OverrideState: 1
+    m_Value: 0
+  lookIntensity:
+    m_OverrideState: 1
+    m_Value: 1
+  hdrPurity:
+    m_OverrideState: 1
+    m_Value: 0.5
+  hdrExtraPowerFactor:
+    m_OverrideState: 1
+    m_Value: 2
+  useP3Limit:
     m_OverrideState: 1
     m_Value: 0
 --- !u!114 &6940869943325143175
