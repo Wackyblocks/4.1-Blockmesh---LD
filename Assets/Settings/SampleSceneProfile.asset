@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Name: SampleSceneProfile
   m_EditorClassIdentifier: 
   components:
+  - {fileID: 3313381687433232865}
   - {fileID: 849379129802519247}
   - {fileID: -7893295128165547882}
   - {fileID: 7391319092446245454}
@@ -107,7 +108,7 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   neutralHDRRangeReductionMode:
     m_OverrideState: 0
     m_Value: 2
@@ -132,6 +133,43 @@ MonoBehaviour:
   maxNits:
     m_OverrideState: 1
     m_Value: 647
+--- !u!114 &3313381687433232865
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b884fa4bc92d448cfbf049be658fd627, type: 3}
+  m_Name: AgXToneMapping
+  m_EditorClassIdentifier: net.aki-null.ToneMapping.URP::CustomToneMapping.URP.AgXToneMapping
+  active: 1
+  detectBrightnessLimits:
+    m_OverrideState: 0
+    m_Value: 1
+  maxNits:
+    m_OverrideState: 0
+    m_Value: 1000
+  sdrPaperWhite:
+    m_OverrideState: 0
+    m_Value: 250
+  look:
+    m_OverrideState: 1
+    m_Value: 1
+  lookIntensity:
+    m_OverrideState: 1
+    m_Value: 0.327
+  hdrPurity:
+    m_OverrideState: 0
+    m_Value: 0.5
+  hdrExtraPowerFactor:
+    m_OverrideState: 0
+    m_Value: 2
+  useP3Limit:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &7391319092446245454
 MonoBehaviour:
   m_ObjectHideFlags: 3
