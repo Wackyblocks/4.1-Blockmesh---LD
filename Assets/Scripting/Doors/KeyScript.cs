@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Data;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -9,34 +10,47 @@ public class KeyScript : MonoBehaviour
 
     [Header("Objects")]
     [SerializeField] private GameObject keyItem;
-    [SerializeField] private SphereCollider Trigger;
 
     [Header("Sounds")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pickupSound;
 
+    [Header("Materials")]
+    [SerializeField] Material Red;
+    [SerializeField] Material Green;
+    [SerializeField] Material Blue;
+
     private bool pickedUp;
 
-
-    void Start()
+    private void OnDrawGizmos()
     {
-        //set defaults
-        pickedUp = false;
+        //assing material of key based on enum
+        //Renderer renderer = GetComponent<Renderer>();
+        if (KeyType == keyType.Red)
+        {
+            //renderer.material = Red;
+        }
+        else if (KeyType == keyType.Green)
+        {
+            //renderer.material = Green;
+        }
+        else if (KeyType == keyType.Blue)
+        {
+            //renderer.material = Green;
+        }
+    }
+    private void OnTriggerEnter(Collider player)
+    {
+        if (player.CompareTag("Player") && !pickedUp)
+        {
+            pickedUp = true;
+            Destroy(keyItem);
+
+            Debug.Log("Key picked up");
+            //store data that key is picked up
+            return;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    void pickUpKey()
-    {
-        pickedUp = true;
-        Destroy(keyItem);
-
-        //play audio
-        audioSource.clip = pickupSound;
-        audioSource.PlayOneShot(pickupSound);
-    }
 }

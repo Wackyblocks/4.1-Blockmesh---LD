@@ -8,6 +8,11 @@ public class DoorActionBehaviour : MonoBehaviour
     [Header("Objects")]
     [SerializeField] private Animator doorAnimator;
 
+    [Header("Locks")]
+    [SerializeField] private bool useKeys = false;
+    [SerializeField] private enum keyType { Red, Green, Blue }
+    [SerializeField] private keyType KeyType = keyType.Red;
+
     [Header("Sound")]
     [SerializeField] private AudioClip soundDoorOpen;
     [SerializeField] private AudioClip soundDoorClose;
@@ -18,13 +23,13 @@ public class DoorActionBehaviour : MonoBehaviour
     {
         if (inTrigger) //figure out how to get interact trigger from player
         {
-            //if (_input.interact)
+            //if (_input.interact && !isOpen)
             //{
             //    Debug.Log("DoorClick");
             //}
+
         }
     }
-
     private void OnTriggerEnter(Collider player)
     {
         if (player.CompareTag("Player"))
