@@ -7,25 +7,26 @@ public class Powerup : MonoBehaviour
 {
     [Header("Objects")]
     [SerializeField] private GameObject powerupItem;
+    [SerializeField] private Animator animator;
 
     [Header("Sounds")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pickupSound;
 
     [Header("Refill")]
-    [SerializeField] private float refillTime = 40.0f;
+    [SerializeField] private float refillTime = 6.0f;
 
-    private bool pickedUp;
-    private bool isOnCooldown;
+    private bool pickedUp = false;
+    private bool isOnCooldown = false;
 
     private void OnTriggerEnter(Collider player)
     {
-        if (player.CompareTag("Player") && !pickedUp)
+        if (player.CompareTag("Player") && !isOnCooldown)
         {
             pickedUp = true;
             powerupItem.SetActive(false);
 
-            Debug.Log("Powerup picked up");
+            Debug.Log("Powerup picked up, add effect of you choice");
 
             //trigger cooldown
             StartCoroutine(Cooldown());
@@ -41,7 +42,8 @@ public class Powerup : MonoBehaviour
         while (timer < refillTime)
         {
             timer += Time.deltaTime;
-            refillTime = 1 - (timer / refillTime);
+            float progress = timer / refillTime;
+
             yield return null;
         }
 
@@ -52,7 +54,9 @@ public class Powerup : MonoBehaviour
     {
         isOnCooldown = false;
         pickedUp = false;
-        Debug.Log("Add refill here for object");
+
+        animator.SetTrigger("Spawn");
         powerupItem.SetActive(true);
+        
     }
 }

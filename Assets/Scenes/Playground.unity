@@ -503,6 +503,7 @@ GameObject:
   - component: {fileID: 481869311}
   - component: {fileID: 481869310}
   - component: {fileID: 481869309}
+  - component: {fileID: 481869313}
   m_Layer: 0
   m_Name: Powerup
   m_TagString: Untagged
@@ -529,7 +530,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.46
+  m_Radius: 0.28
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &481869310
 AudioSource:
@@ -641,9 +642,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powerup
   powerupItem: {fileID: 1489473212}
+  animator: {fileID: 481869313}
   audioSource: {fileID: 481869310}
   pickupSound: {fileID: 8300000, guid: fc36af1d89e268a4bb555262ae68e44e, type: 3}
-  refillTime: 20
+  refillTime: 6
 --- !u!4 &481869312
 Transform:
   m_ObjectHideFlags: 0
@@ -653,13 +655,35 @@ Transform:
   m_GameObject: {fileID: 481869308}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.968, y: 0.095, z: 0.083}
+  m_LocalPosition: {x: 4, y: 0.245, z: 0}
   m_LocalScale: {x: 1, y: 0.44, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1489473213}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &481869313
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481869308}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f70b7234883caa04389e09a9a0dcebbf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &520995766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,7 +1737,7 @@ Transform:
   m_GameObject: {fileID: 1083607982}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.108, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2000,6 +2024,7 @@ GameObject:
   - component: {fileID: 1246845892}
   - component: {fileID: 1246845889}
   - component: {fileID: 1246845888}
+  - component: {fileID: 1246845893}
   m_Layer: 0
   m_Name: PressurePlate
   m_TagString: Untagged
@@ -2134,7 +2159,7 @@ Transform:
   m_GameObject: {fileID: 1246845887}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.746, y: 0.125, z: 0.54}
+  m_LocalPosition: {x: 6.746, y: 0.038, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2154,8 +2179,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PressurePlate
   KeyType: 0
+  animator: {fileID: 1246845893}
   audioSource: {fileID: 0}
   pickupSound: {fileID: 0}
+--- !u!95 &1246845893
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246845887}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cd469bfb1ca2fc49bacbf8660f905ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1489473212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,7 +2233,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 481869312}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2561,7 +2609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: field of view
-      value: 40
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_FOVAxisMode
@@ -2883,6 +2931,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 8338988565591873055}
+    - target: {fileID: 8762286023885395323, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 70
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

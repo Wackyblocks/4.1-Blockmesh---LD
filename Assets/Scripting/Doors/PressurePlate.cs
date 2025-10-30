@@ -8,6 +8,8 @@ public class PressurePlate : MonoBehaviour
     [SerializeField] private enum keyType { Red, Green, Blue }
     [SerializeField] private keyType KeyType = keyType.Red;
 
+    [SerializeField] private Animator animator;
+
     [Header("Sounds")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pickupSound;
@@ -19,6 +21,7 @@ public class PressurePlate : MonoBehaviour
         if (player.CompareTag("Player"))
         {
             active = true;
+            animator.SetBool("Pressed", true);
             Debug.Log("Stepped on plate");
             return;
         }
@@ -29,6 +32,7 @@ public class PressurePlate : MonoBehaviour
         if (player.CompareTag("Player"))
         {
             active = false;
+            animator.SetBool("Pressed", false);
             Debug.Log("Left plate");
             return;
         }
