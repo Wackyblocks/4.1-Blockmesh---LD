@@ -21,6 +21,7 @@ public class DoorTriggerBehaviour : MonoBehaviour
             isOpen = true;
             doorAnimator.SetBool("isOpen", true);
             return;
+
         }
     }
 

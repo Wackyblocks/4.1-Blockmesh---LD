@@ -1,17 +1,17 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Windows;
+using StarterAssets;
 
 public class DoorActionBehaviour : MonoBehaviour
 {
     [Header("Objects")]
     [SerializeField] private Animator doorAnimator;
+    [SerializeField] private GameObject promptOpen;
+    [SerializeField] private GameObject promptNeedKey;
 
     [Header("Locks")]
     [SerializeField] private bool useKeys = false;
-    [SerializeField] private enum keyType { Red, Green, Blue }
-    [SerializeField] private keyType KeyType = keyType.Red;
+    public enum KeyType { Red, Green, Blue }
+    [SerializeField] private KeyType keyType = KeyType.Red;
 
     [Header("Sound")]
     [SerializeField] private AudioClip soundDoorOpen;
@@ -19,45 +19,121 @@ public class DoorActionBehaviour : MonoBehaviour
 
     private bool isOpen;
     private bool inTrigger;
+
+    private StarterAssetsInputs inputs;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        promptOpen?.SetActive(false);
+        promptNeedKey?.SetActive(false);
+
+        inputs = Object.FindFirstObjectByType<StarterAssetsInputs>();
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
-        if (inTrigger) //figure out how to get interact trigger from player
-        {
-            //if (_input.interact && !isOpen)
-            //{
-            //    Debug.Log("DoorClick");
-            //}
+        if (!inTrigger) return;
 
-        }
-    }
-    private void OnTriggerEnter(Collider player)
-    {
-        if (player.CompareTag("Player"))
+        bool playerHasKey = CheckIfPlayerHasKey();
+
+        // Update prompts while player is near the door
+        if (useKeys)
         {
-            inTrigger = true;
-            Debug.Log("Press `E` to Open Door");
-            return;
+            if (playerHasKey)
+            {
+                if (!promptOpen.activeSelf)
+                {
+                    promptNeedKey.SetActive(false);
+                    promptOpen.SetActive(true);
+                }
+            }
+            else
+            {
+                if (!promptNeedKey.activeSelf)
+                {
+                    promptOpen.SetActive(false);
+                    promptNeedKey.SetActive(true);
+                }
+            }
+        }
+
+        // Open door on interact
+        if (inputs != null && inputs.interact)
+        {
+            if (!useKeys || playerHasKey)
+            {
+                OpenDoor();
+            }
+
+            // Consume input
+            inputs.interact = false;
         }
     }
-    void OpenDoor()
+
+    private void OnTriggerEnter(Collider other)
     {
+        if (!other.CompareTag("Player")) return;
+        inTrigger = true;
+
+        if (useKeys)
+        {
+            if (CheckIfPlayerHasKey())
+                promptOpen?.SetActive(true);
+            else
+                promptNeedKey?.SetActive(true);
+        }
+        else
+        {
+            promptOpen?.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+
+        inTrigger = false;
+        promptOpen?.SetActive(false);
+        promptNeedKey?.SetActive(false);
+
+        //  Auto-close the door
+        CloseDoor();
+    }
+
+    private void OpenDoor()
+    {
+        if (isOpen) return;
+
         isOpen = true;
         doorAnimator.SetBool("isOpen", true);
+
+        if (soundDoorOpen)
+            audioSource?.PlayOneShot(soundDoorOpen);
+
+        promptOpen?.SetActive(false);
+        promptNeedKey?.SetActive(false);
     }
 
-    private void OnTriggerExit(Collider player)
+    private void CloseDoor()
     {
-        if (player.CompareTag("Player"))
-        {
-            //play sound effect
-            isOpen = false;
-            doorAnimator.SetBool("isOpen", false);
-            Debug.Log("Door closed");
+        if (!isOpen) return;
 
-            return;
-        }
+        isOpen = false;
+        doorAnimator.SetBool("isOpen", false);
+
+        if (soundDoorClose)
+            audioSource?.PlayOneShot(soundDoorClose);
     }
 
+    private bool CheckIfPlayerHasKey()
+    {
+        if (!useKeys) return true;
 
+        var keyManager = Object.FindFirstObjectByType<PlayerKeyInventory>();
+        if (keyManager == null) return false;
 
+        return keyManager.HasKey(keyType);
+    }
 }

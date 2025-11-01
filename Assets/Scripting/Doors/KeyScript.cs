@@ -1,56 +1,50 @@
-using System.Collections;
-using System.Data;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class KeyScript : MonoBehaviour
 {
-    [SerializeField] private enum keyType { Red, Green, Blue }
-    [SerializeField] private keyType KeyType = keyType.Red;
+    [Header("Key Settings")]
+    [SerializeField] private DoorActionBehaviour.KeyType keyType = DoorActionBehaviour.KeyType.Red;
 
     [Header("Objects")]
-    [SerializeField] private GameObject keyItem;
+    [SerializeField] private GameObject keyItem; // visual model of the key
 
     [Header("Sounds")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pickupSound;
 
-    [Header("Materials")]
-    [SerializeField] Material Red;
-    [SerializeField] Material Green;
-    [SerializeField] Material Blue;
-
     private bool pickedUp;
 
-    private void OnDrawGizmos()
+    private void OnTriggerEnter(Collider other)
     {
-        //assing material of key based on enum
-        //Renderer renderer = GetComponent<Renderer>();
-        if (KeyType == keyType.Red)
+        if (pickedUp) return;
+        if (!other.CompareTag("Player")) return;
+
+        // Prevent multiple triggers
+        pickedUp = true;
+
+        // Add key to player's inventory
+        var inventory = other.GetComponent<PlayerKeyInventory>();
+        if (inventory != null)
         {
-            //renderer.material = Red;
+            inventory.AddKey(keyType);
+            Debug.Log($"Player picked up {keyType} key!");
         }
-        else if (KeyType == keyType.Green)
+        else
         {
-            //renderer.material = Green;
+            Debug.LogWarning("No PlayerKeyInventory found on player!");
         }
-        else if (KeyType == keyType.Blue)
+
+        // Play pickup sound
+        if (audioSource && pickupSound)
         {
-            //renderer.material = Green;
+            audioSource.PlayOneShot(pickupSound);
         }
+
+        // Hide or remove the key model
+        if (keyItem != null)
+            keyItem.SetActive(false);
+
+        // Optional: destroy after sound delay
+        Destroy(gameObject, pickupSound ? pickupSound.length : 0f);
     }
-    private void OnTriggerEnter(Collider player)
-    {
-        if (player.CompareTag("Player") && !pickedUp)
-        {
-            pickedUp = true;
-            Destroy(keyItem);
-
-            Debug.Log("Key picked up");
-            //store data that key is picked up
-            return;
-        }
-    }
-
-
 }
