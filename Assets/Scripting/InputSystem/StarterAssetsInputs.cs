@@ -11,7 +11,8 @@ namespace StarterAssets
 		public Vector2 move;
 		public Vector2 look;
 		public bool jump;
-		public bool sprint;
+        public bool fire;
+        public bool sprint;
         public bool interact;
 
         [Header("Movement Settings")]
@@ -48,6 +49,11 @@ namespace StarterAssets
         {
             InteractInput(value.isPressed);
         }
+
+        public void OnFire(InputValue value)
+        {
+            FireInput(value.isPressed);
+        }
 #endif
 
 
@@ -59,6 +65,11 @@ namespace StarterAssets
         public void InteractInput(bool newInteractState)
         {
             interact = newInteractState;
+        }
+
+        public void FireInput(bool newInteractState)
+        {
+            fire = newInteractState;
         }
 
         public void LookInput(Vector2 newLookDirection)
