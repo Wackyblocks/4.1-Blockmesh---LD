@@ -142,6 +142,7 @@ MonoBehaviour:
   audioSource: {fileID: 1784359641700828060}
   pickupSound: {fileID: 8300000, guid: fc36af1d89e268a4bb555262ae68e44e, type: 3}
   refillTime: 6
+  ammoAmount: 6
 --- !u!82 &1784359641700828060
 AudioSource:
   m_ObjectHideFlags: 0

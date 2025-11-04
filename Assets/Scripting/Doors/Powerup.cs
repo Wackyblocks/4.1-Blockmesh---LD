@@ -15,6 +15,7 @@ public class Powerup : MonoBehaviour
 
     [Header("Refill")]
     [SerializeField] private float refillTime = 6.0f;
+    [SerializeField] public int ammoAmount = 6;
 
     private bool pickedUp = false;
     private bool isOnCooldown = false;
@@ -26,7 +27,9 @@ public class Powerup : MonoBehaviour
             pickedUp = true;
             powerupItem.SetActive(false);
 
-            Debug.Log("Powerup picked up, add effect of you choice");
+            WeaponGun gun = player.GetComponentInChildren<WeaponGun>();
+            gun.AddAmmo(ammoAmount);
+            Debug.Log("adding ammo");
 
             //trigger cooldown
             StartCoroutine(Cooldown());
