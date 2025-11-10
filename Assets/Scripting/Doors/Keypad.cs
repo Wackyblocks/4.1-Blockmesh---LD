@@ -8,6 +8,7 @@ public class Keypad : MonoBehaviour
     [SerializeField] private GameObject keypadPrompt; 
     [SerializeField] private Camera playerCamera;    
     [SerializeField] private float interactDistance = 3f;
+    [SerializeField] private LinkedPlatform linkedPlatform;
 
     private bool inTrigger;
     private bool keypadActivated;
@@ -78,5 +79,11 @@ public class Keypad : MonoBehaviour
         keypadActivated = true;
         Debug.Log("keypad activated"); //todo potential triggers
         keypadPrompt.SetActive(false);
+
+        //trigger
+        if (linkedPlatform != null)
+        {
+            linkedPlatform.ActivatePlatform();
+        }
     }
 }

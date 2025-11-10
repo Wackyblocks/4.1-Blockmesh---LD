@@ -19,4 +19,13 @@ public class LinkedPlatform : MonoBehaviour
         }
 
     }
+    //extrernal scripts
+    public void ActivatePlatform()
+    {
+        if (isTriggered) return;
+        isTriggered = true;
+
+        Debug.Log("Platform activated!");
+        animator.SetBool("isTriggered", true);
+    }
 }

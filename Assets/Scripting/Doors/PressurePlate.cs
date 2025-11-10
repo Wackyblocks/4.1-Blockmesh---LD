@@ -22,6 +22,7 @@ public class PressurePlate : MonoBehaviour
         {
             active = true;
             animator.SetBool("Pressed", true);
+            animator.SetTrigger("Trigger");
             Debug.Log("Stepped on plate");
             return;
         }
